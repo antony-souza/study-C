@@ -1,35 +1,37 @@
 #include <stdio.h>
 #include <string.h>
 
-
-struct Pessoa {
-    char nome[50];
-    int idade;
-    char endereco[100];
+struct Car
+{
+    char name[20];
+    int  year;
+    char color[20];
 };
 
-int main() {
+int main()
+{
+    struct Car car[2];
 
-    struct Pessoa pessoas[3];
+    strcpy(car[0].name, "Gol");
+    car[0].year = 2018;
+    strcpy(car[0].color, "blue");
 
+    strcpy(car[1].name, "Corolla");
+    car[1].year = 2019;
+    strcpy(car[1].color, "red");
 
-    strcpy(pessoas[0].nome, "Joao");
-    pessoas[0].idade = 30;
-    strcpy(pessoas[0].endereco, "Rua 1, Cidade A");
+/* Os % abaixo(especificadores de formato) especifícia o tipo de dato que ele está imprimindo na saída, e o \n é um
+quebra linha */
 
-    strcpy(pessoas[1].nome, "Maria");
-    pessoas[1].idade = 25;
-    strcpy(pessoas[1].endereco, "Rua 2, Cidade B");
+/* o for executa uma repetição usando a variável 'i', e toda vez é adicionando como um 
+novo elemento com cada argumento do Array*/
 
-    strcpy(pessoas[2].nome, "Pedro");
-    pessoas[2].idade = 40;
-    strcpy(pessoas[2].endereco, "Rua 3, Cidade C");
-
-    for (int i = 0; i < 3; i++) {
-        printf("Pessoa %d:\n", i+1);
-        printf("Nome: %s\n", pessoas[i].nome);
-        printf("Idade: %d\n", pessoas[i].idade);
-        printf("Endereco: %s\n\n", pessoas[i].endereco);
+    for (int i = 0; i < 2; i++) // Corrigido para i < 2
+    {
+        printf("Detalhes do Carro:\n"); // Corrigido para imprimir o número da lista
+        printf("Nome: %s\n", car[i].name);
+        printf("Ano: %d\n", car[i].year);
+        printf("Cor: %s\n\n", car[i].color);
     }
 
     return 0;
