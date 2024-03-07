@@ -1,38 +1,92 @@
 #include <stdio.h>
 #include <string.h>
 
-struct Car
-{
-    char name[20];
-    int  year;
-    char color[20];
+#define MAX_USERS 3
+#define MAX_CARS 3
+
+// Estrutura para os usuários
+struct User {
+    char name[45];
+    int age;
+    float money;
 };
 
-int main()
-{
-    struct Car car[2];
+// Estrutura para os carros
+struct Car {
+    char name[36];
+    float price;
+};
 
-    strcpy(car[0].name, "Gol");
-    car[0].year = 2018;
-    strcpy(car[0].color, "blue");
+// Função para exibir a lista de usuários
+void listarUsuarios(struct User users[], int n) {
+    printf("Lista de Usuários:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%s - Idade: %d - Saldo: %.2f\n", users[i].name, users[i].age, users[i].money);
+    }
+}
 
-    strcpy(car[1].name, "Corolla");
-    car[1].year = 2019;
-    strcpy(car[1].color, "red");
+// Função para exibir a lista de carros
+void listarCarros(struct Car cars[], int n) {
+    printf("Lista de Carros:\n\n");
+    for (int i = 0; i < n; i++) {
+        printf("Carro %d:\n", i+1);
+        printf("Nome: %s\n", cars[i].name);
+        printf("Preço: %.2f\n\n", cars[i].price);
+    }
+}
 
-/* Os % abaixo(especificadores de formato) especifícia o tipo de dato que ele está imprimindo na saída, e o \n é um
-quebra linha */
+int main() {
+    // tabela de usuários
+    struct User users[MAX_USERS] = {
+        {"João", 30, 20000.0},
+        {"Maria", 25, 25000.0},
+        {"Pedro", 35, 18000.0}
+    };
 
-/* o for executa uma repetição usando a variável 'i', e toda vez é adicionando como um 
-novo elemento com cada argumento do Array*/
+    // tabela de carros
+    struct Car cars[MAX_CARS] = {
+        {"Celta Azul", 15000.0},
+        {"Celta Preto", 17000.0},
+        {"Celta Rosa", 16000.0}
+    };
 
-    for (int i = 0; i < 2; i++) // Corrigido para i < 2
-    {
-        printf("Detalhes do Carro:\n"); // Corrigido para imprimir o número da lista
-        printf("Nome: %s\n", car[i].name);
-        printf("Ano: %d\n", car[i].year);
-        printf("Cor: %s\n\n", car[i].color);
+    int escolha;
+    while (1) { // Loop infinito de menu(teste)
+        
+        printf("Menu:\n");
+        printf("1. Listar usuários\n");
+        printf("2. Listar carros\n");
+        printf("3. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &escolha);
+
+        switch (escolha) {
+            case 1:
+                // função de listar usuários
+                listarUsuarios(users, MAX_USERS);
+                break;
+            case 2:
+                // função de listar carros
+                listarCarros(cars,MAX_CARS);
+                break;
+            case 3:
+                // Sair do programa
+                printf("Saindo do programa.\n");
+                return 0;
+            default:
+                printf("Opção inválida.\n");
+                break;
+        }
+        printf("\n"); // Adiciona uma linha em branco após a execução de uma opção
     }
 
     return 0;
 }
+
+
+
+/* Os % abaixo(especificadores de formato) diz o tipo de dado que ele está imprimindo na saída, e o \n é um
+quebra linha */
+
+/* o for executa uma repetição usando a variável 'i', e toda vez é adicionando como um 
+novo elemento com cada argumento do Array*/
