@@ -22,10 +22,9 @@ int main() {
             continue;
         }
 
-        // Convertendo tudo para segundos
+        //Guardando tudo em HH:MM:SS
         tempo = h * 3600 + m * 60 + s;
 
-        // Verificando o menor tempo
         if (tempo < menorTempo) {
             menorTempo = tempo;
             numeroDoCorredor = i + 1;
