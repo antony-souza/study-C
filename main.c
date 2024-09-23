@@ -1,92 +1,45 @@
 #include <stdio.h>
-#include <string.h>
-
-#define MAX_USERS 3
-#define MAX_CARS 3
-
-// Estrutura para os usuários
-struct User {
-    char name[45];
-    int age;
-    float money;
-};
-
-// Estrutura para os carros
-struct Car {
-    char name[36];
-    float price;
-};
-
-// Função para exibir a lista de usuários
-void listarUsuarios(struct User users[], int n) {
-    printf("Lista de Usuários:\n");
-    for (int i = 0; i < n; i++) {
-        printf("%s - Idade: %d - Saldo: %.2f\n", users[i].name, users[i].age, users[i].money);
-    }
-}
-
-// Função para exibir a lista de carros
-void listarCarros(struct Car cars[], int n) {
-    printf("Lista de Carros:\n\n");
-    for (int i = 0; i < n; i++) {
-        printf("Carro %d:\n", i+1);
-        printf("Nome: %s\n", cars[i].name);
-        printf("Preço: %.2f\n\n", cars[i].price);
-    }
-}
 
 int main() {
-    // tabela de usuários
-    struct User users[MAX_USERS] = {
-        {"João", 30, 20000.0},
-        {"Maria", 25, 25000.0},
-        {"Pedro", 35, 18000.0}
-    };
+    int n, i, tempo, numeroDoCorredor;
+    float menorTempo = 100000000;
 
-    // tabela de carros
-    struct Car cars[MAX_CARS] = {
-        {"Celta Azul", 15000.0},
-        {"Celta Preto", 17000.0},
-        {"Celta Rosa", 16000.0}
-    };
+    printf("Digite quantos corredores tem na prova: ");
+    scanf("%d", &n);
 
-    int escolha;
-    while (1) { // Loop infinito de menu(teste)
-        
-        printf("Menu:\n");
-        printf("1. Listar usuários\n");
-        printf("2. Listar carros\n");
-        printf("3. Sair\n");
-        printf("Escolha uma opção: ");
-        scanf("%d", &escolha);
+    for (i = 0; i < n; i++) {
+        int h, m, s;
+        printf("Digite o tempo do corredor de numero %d no formato HH.MM.SS: ", i + 1);
+        scanf("%d.%d.%d", &h, &m, &s); // Usei . como separador
 
-        switch (escolha) {
-            case 1:
-                // função de listar usuários
-                listarUsuarios(users, MAX_USERS);
-                break;
-            case 2:
-                // função de listar carros
-                listarCarros(cars,MAX_CARS);
-                break;
-            case 3:
-                // Sair do programa
-                printf("Saindo do programa.\n");
-                return 0;
-            default:
-                printf("Opção inválida.\n");
-                break;
+        // Validação
+        if (h < 0 || m < 0 || s < 0 || m >= 60 || s >= 60) {
+            printf("Entrada invalida. Tente novamente.\n");
+            i--;
+            //  O operador -- faz voltar na posição anterior, o que acaba parando na validação se for passado
+            // o time de forma errada
+
+            continue;
         }
-        printf("\n"); // Adiciona uma linha em branco após a execução de uma opção
+
+        // Convertendo tudo para segundos
+        tempo = h * 3600 + m * 60 + s;
+
+        // Verificando o menor tempo
+        if (tempo < menorTempo) {
+            menorTempo = tempo;
+            numeroDoCorredor = i + 1;
+        }
     }
+
+    // Convertendo menorTempo para horas, minutos e segundos
+    int horas = (int) menorTempo / 3600;
+    int minutos = ((int) menorTempo % 3600) / 60;
+    int segundos = (int) menorTempo % 60;
+
+    // Exibindo o resultado em HH:MM:SS, facilitar a visualização
+    printf("O corredor de numero %d fez o menor tempo de %02d:%02d:%02d\n",
+           numeroDoCorredor, horas, minutos, segundos);
 
     return 0;
 }
-
-
-
-/* Os % abaixo(especificadores de formato) diz o tipo de dado que ele está imprimindo na saída, e o \n é um
-quebra linha */
-
-/* o for executa uma repetição usando a variável 'i', e toda vez é adicionando como um 
-novo elemento com cada argumento do Array*/

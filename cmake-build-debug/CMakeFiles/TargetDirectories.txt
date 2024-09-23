@@ -1,0 +1,3 @@
+C:/Users/anton/Documents/faculdade/códigos/study-C/cmake-build-debug/CMakeFiles/study_C.dir
+C:/Users/anton/Documents/faculdade/códigos/study-C/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/anton/Documents/faculdade/códigos/study-C/cmake-build-debug/CMakeFiles/rebuild_cache.dir
