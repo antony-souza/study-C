@@ -10,14 +10,14 @@ int main() {
     for (i = 0; i < n; i++) {
         int h, m, s;
         printf("Digite o tempo do corredor de numero %d no formato HH.MM.SS: ", i + 1);
-        scanf("%d.%d.%d", &h, &m, &s); // Usei . como separador
+        scanf("%d.%d.%d", &h, &m, &s);
 
         // Validação
         if (h < 0 || m < 0 || s < 0 || m >= 60 || s >= 60) {
             printf("Entrada invalida. Tente novamente.\n");
             i--;
             //  O operador -- faz voltar na posição anterior, o que acaba parando na validação se for passado
-            // o time de forma errada
+            // o time de na formatação errada
 
             continue;
         }
