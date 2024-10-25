@@ -1,22 +1,21 @@
 #include <locale.h>
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "pt_BR.UTF-8");
 
     int alunos;
-    float media = 7.0;
+    float media = 7;
 
     printf("Digite a quantidade de alunos: ");
     scanf("%d", &alunos);
 
     float* alunosArray = (float*)malloc(alunos * sizeof(float));
 
-    if(alunosArray == NULL) {
-        printf("Erro ao alocar memoria");
-        return  1;
+    if (alunosArray == NULL) {
+        printf("Erro ao alocar memória");
+        return 1;
     }
 
     for (int i = 0; i < alunos; i++) {
@@ -24,15 +23,28 @@ int main() {
         scanf("%f", &alunosArray[i]);
     }
 
-    printf("Tabela de Alunos\n: ");
+    printf("\n");
+    printf("===============================================\n");
+    printf("| Aluno | Nota   | Situação                  |\n");
+    printf("===============================================\n");
+
+    int aprovados = 0;
+    int reprovados = 0;
+
     for (int i = 0; i < alunos; i++) {
-        if(alunosArray[i] > media) {
-            printf("Aluno %d foi APROVADO com nota: %.2f\n", i + 1, alunosArray[i]);
-        }
-        else {
-            printf("Aluno %d foi REPROVADO com nota: %.2f\n", i + 1, alunosArray[i]);
+        printf("| %-5d | %-6.2f | ", i + 1, alunosArray[i]);
+        if (alunosArray[i] >= media) {
+            printf("APROVADO                  |\n");
+            aprovados++;
+        } else {
+            printf("REPROVADO                 |\n");
+            reprovados++;
         }
     }
+
+    printf("===============================================\n");
+    printf("A quantidade de alunos aprovados foi: %d\n", aprovados);
+    printf("A quantidade de alunos reprovados foi: %d\n", reprovados);
 
     free(alunosArray);
 
