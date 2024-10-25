@@ -55,12 +55,6 @@ build CMakeFiles/study_C.dir/main.c.obj: C_COMPILER__study_C_unscanned_Debug C$:
   OBJECT_DIR = CMakeFiles\study_C.dir
   OBJECT_FILE_DIR = CMakeFiles\study_C.dir
 
-build CMakeFiles/study_C.dir/app.c.obj: C_COMPILER__study_C_unscanned_Debug C$:/Users/anton/Documents/faculdade/códigos/study-C/app.c || cmake_object_order_depends_target_study_C
-  DEP_FILE = CMakeFiles\study_C.dir\app.c.obj.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\study_C.dir
-  OBJECT_FILE_DIR = CMakeFiles\study_C.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target study_C
@@ -69,7 +63,7 @@ build CMakeFiles/study_C.dir/app.c.obj: C_COMPILER__study_C_unscanned_Debug C$:/
 #############################################
 # Link the executable study_C.exe
 
-build study_C.exe: C_EXECUTABLE_LINKER__study_C_Debug CMakeFiles/study_C.dir/main.c.obj CMakeFiles/study_C.dir/app.c.obj
+build study_C.exe: C_EXECUTABLE_LINKER__study_C_Debug CMakeFiles/study_C.dir/main.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\study_C.dir

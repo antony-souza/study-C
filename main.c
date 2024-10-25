@@ -1,44 +1,40 @@
+#include <locale.h>
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
-    int n, i, tempo, numeroDoCorredor;
-    float menorTempo = 100000000;
+    setlocale(LC_ALL, "Portuguese");
 
-    printf("Digite quantos corredores tem na prova: ");
-    scanf("%d", &n);
+    int alunos;
+    float media = 7.0;
 
-    for (i = 0; i < n; i++) {
-        int h, m, s;
-        printf("Digite o tempo do corredor de numero %d no formato HH.MM.SS: ", i + 1);
-        scanf("%d.%d.%d", &h, &m, &s);
+    printf("Digite a quantidade de alunos: ");
+    scanf("%d", &alunos);
 
-        // Validação
-        if (h < 0 || m < 0 || s < 0 || m >= 60 || s >= 60) {
-            printf("Entrada invalida. Tente novamente.\n");
-            i--;
-            //  O operador -- faz voltar na posição anterior, o que acaba parando na validação se for passado
-            // o time de na formatação errada
+    float* alunosArray = (float*)malloc(alunos * sizeof(float));
 
-            continue;
+    if(alunosArray == NULL) {
+        printf("Erro ao alocar memoria");
+        return  1;
+    }
+
+    for (int i = 0; i < alunos; i++) {
+        printf("Digite a nota do aluno %d: ", i + 1);
+        scanf("%f", &alunosArray[i]);
+    }
+
+    printf("Tabela de Alunos\n: ");
+    for (int i = 0; i < alunos; i++) {
+        if(alunosArray[i] > media) {
+            printf("Aluno %d foi APROVADO com nota: %.2f\n", i + 1, alunosArray[i]);
         }
-
-        //Guardando tudo em HH:MM:SS
-        tempo = h * 3600 + m * 60 + s;
-
-        if (tempo < menorTempo) {
-            menorTempo = tempo;
-            numeroDoCorredor = i + 1;
+        else {
+            printf("Aluno %d foi REPROVADO com nota: %.2f\n", i + 1, alunosArray[i]);
         }
     }
 
-    // Convertendo menorTempo para horas, minutos e segundos
-    int horas = (int) menorTempo / 3600;
-    int minutos = ((int) menorTempo % 3600) / 60;
-    int segundos = (int) menorTempo % 60;
-
-    // Exibindo o resultado em HH:MM:SS, facilitar a visualização
-    printf("O corredor de numero %d fez o menor tempo de %02d:%02d:%02d\n",
-           numeroDoCorredor, horas, minutos, segundos);
+    free(alunosArray);
 
     return 0;
 }
